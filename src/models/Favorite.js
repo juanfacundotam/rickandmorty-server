@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
             unique: true,
         },
         status: {
-            type: DataTypes.ENUM("Alive", "Dead", "Unknown"),
+            type: DataTypes.ENUM("Alive", "Dead", "unknown"),
             defaultValue: "Alive"
         },
         species: {
@@ -30,7 +30,11 @@ module.exports = (sequelize) => {
         image: {
             type: DataTypes.STRING,
             allowNull: false,
-        }
+        },
+        // idUser: {
+        //     type:DataTypes.INTEGER
+        //     refe
+        // }
     },
     {
         timestamps: false

@@ -8,7 +8,8 @@ const postFav = require("../controllers/postFav");
 const deleteFav = require("../controllers/deleteFav");
 const postUser = require("../controllers/postUser");
 const loginUser = require("../controllers/loginUser");
-const loginAll = require("../controllers/loginAll")
+const loginAll = require("../controllers/loginAll");
+const userFavs = require("../controllers/userFavs");
 
 
 /****************************************************************/
@@ -29,6 +30,15 @@ router.get("/loginall", loginAll);
 /******************************************************************/
 // router.use("/rickandmorty/favs")
 
+router.get("/userfavs", async (req, res) => {
+try {
+  const userAllFavs = await userFavs();
+  res.status(200).json(userAllFavs);
+} catch (error) {
+  res.status(404).json({ error: "No hay personajes favoritos" });
+}
+});
+
 router.get("/fav", async (req, res) => {
 try {
   const allFavs = await findAllFavs();
@@ -39,6 +49,8 @@ try {
 });
 
 router.post("/fav", postFav)
+
+router.get("/userfavs/:id", userFavs)
 // (req, res) => {
 //   const character = req.body;
 //   if (character.name) {
@@ -49,7 +61,7 @@ router.post("/fav", postFav)
 //   }
 // });
 
-router.delete("/fav/:id", deleteFav)
+router.delete("/favdelete", deleteFav)
 // (req, res) => {
 //   const { id } = req.params;
 //   const favFilter = favorites.filter((char) => char.id !== Number(id));

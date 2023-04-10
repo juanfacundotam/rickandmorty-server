@@ -21,7 +21,8 @@ module.exports = (sequelize) => {
             validate: {
                 notEmpty: true,
             }
-        }
+        },
+
     },
     {
         timestamps: false
